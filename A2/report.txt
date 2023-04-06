@@ -1,0 +1,52 @@
+						COL-333 Assignment 2
+               MADAKA JAYA PRAKASH(2020CS10356) , VARANASI YASWANTH KRISHNA(2020CS10406)
+					
+
+The Heuristic which we are using takes two parameters m,n as inputs (here m,n are the dimensions of the board)
+and generates a  matrix of size (m,n) and evaluates the estimated score to the game end from the current state. 
+
+The positions in the output matrix which are close to the middle column and row have a higher weight. So the matrix
+will be Symmetric about the middle row and each row will be symmetric about the middle column. 
+Consider the first quarter of the matrix. Fill all the positions of the first quarter respectively so that the values which 
+are near the center will have more weight compared to other points.  As the matrix is symmetric about the middle row and
+the middle column now we can fill the weights of the whole matrix.
+
+The reason for giving more weights to the center of the matrix is, the points  that are nearer to the center are
+more promising points than the corner points, because they have more number of connections.
+
+So if we are in the middle point it will be beneficial for us and if the opponent is in the middle point then it will be a drawback for us.
+
+Suppose the dimensions of the board are 8,6 then the output of our Heuristic will be the following matrix.
+                                       
+                                                                         3   4   6    6    4    3
+                                                                         4   6   8    8    6    4
+                                                                         5   8   10  10  8    5
+                                                                         6  10  12  12  10  6
+                                                                         6  10  12  12  10  6
+                                                                         5   8   10  10  8    5
+                                                                         4   6   8    8    6    4
+                                                                         3   4   6    6    4    3
+
+Consider the middle position. Suppose we are in the middle position our score will be increased by 12 and if our opponent 
+is in the middle position then our score will be reduced by 12.
+
+In the game of Random vs AI we will use the Expectimax tree. When we are at a certain node in the tree as the 
+moves of the random player are random the random player has an equal probability of moving to any of its children 
+nodes. In the Expectimax tree, we will first compute the values of all the leaf nodes and then we start moving from 
+the bottom to the top. The value of an expected node is the average of the values of all its children and the value of 
+a max node is the maximum of the values of all its children. Here expected nodes are the nodes of the opponent and 
+max nodes are our nodes.
+
+
+In the game of (AI/Human) vs AI (Here we are assuming that both the (AI/Human) plays Optimally) we will use a minimax tree. When 
+we are at a certain node in the tree as the moves of (AI/Human) are optimal the (AI/Human) moves optimally to one of its children 
+with probability one. In the minimax tree, we first compute the values of all the leaf nodes, and then we start moving
+from the bottom to the top. The value of the node is the maximum of the values of all its children(if the node is a max
+node) and the value of the node is the minimum of the values of all its children(if the node is a min node). we can say 
+whether a node is a max node or a min node with the help of the depth of the node. Here min nodes are the nodes of the opponent
+and max nodes are our nodes.
+
+
+
+
+
