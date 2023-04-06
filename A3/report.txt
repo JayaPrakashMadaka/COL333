@@ -1,0 +1,52 @@
+						COL-333 Assignment 3
+               MADAKA JAYA PRAKASH(2020CS10356) , VARANASI YASWANTH KRISHNA(2020CS10406)
+
+
+
+Particle filters are a set of Monte Carlo algorithms used to solve filtering problems arising in  Bayesian statistical inference.
+Particle filtering uses a set of particles (also called samples) to represent the posterior distribution of a stochastic process given 
+the noisy and partial observations. The state-space model can be nonlinear and the initial state and noise distributions can take 
+any form required. Particle filter techniques provide a well-established methodology for generating samples from the required 
+distribution without requiring assumptions about the state-space model or the state distributions
+
+
+Algorithm for Part-A:
+
+In the estimate function, we used particle filtering for estimating StdCars. First, we uniformly distributed all the particles in the grid.
+
+At each stage, we made transitions for every particle with the given transProb function. Next based on the given observed dist 
+we increased the weight of the particles which are more prominent and decreased the weight of others. We again re-sampled
+the particles and passed to the next state. 
+
+for moving cars we took tranProb function and shifted the particles. But for cars that are parked, we didn't shift the particles
+we just increased the weight of the particles by given observation and re-sampled.
+
+Due to this we can estimate and differentiate moving cars and parked cars accurately.
+By this, we estimated the belief of all cars using particle filtering.
+
+
+
+Algorithm for Part-B:
+
+We created a map in which all the grids in which the car can move have one in them and the remaining grids will have zero in them. we created a graph
+in which the nodes are coordinates in which the car can move. We made edges for a node to other possible adjacent nodes. 
+
+By this, we made an adjacency list for the graph. We made a separate class given source, destination ,nodes and adjacency list 
+the class gives the shortest path route from source to destination via dfs. 
+
+Now we made two matrices reward matrix and a weight matrix. we summed up all the beliefs of the moving cars at each point
+to weight matrix.
+
+  
+For stationary cars, if the belief of the tile of the stationary car is greater than MIN_CAR_PROB (which is fixed in code) were 
+considered which means the auto car doesn't enter those blocks. 
+
+For each available tile in the map, 
+we applied the DFS function to the goal state and increased the rewards of the 
+nodes that are nearer to the goal state in the path which we obtain by applying DFS.
+
+We Subtracted the weights of the cars from the reward matrix and made a new net reward matrix. Now the auto car moves
+towards the tile which has more reward. 
+
+If the weight of the tile is greater than MIN_PROB (which is also fixed in the code )
+the auto car halts, Which says that some car is very near to us and we need to stop. By this, we can go to checkpoint in a sequential way successfully
