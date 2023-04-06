@@ -1,0 +1,39 @@
+                                                                                                                                                    COL-333 ASSIGNMENT 1 
+Authors{2020CS10356,2020CS10406}
+
+ LOCAL BEAM SEARCH: A heuristic search algorithm that examines a graph by extending the most promising node in a limited set is known as  local beam search. It progresses level by level and moves downward only from the best k nodes at each level. 
+The beam search constructs its search tree using breath-first search. 
+
+The search begins with k randomly generated states.
+
+At each step, all the successors of all k states are generated
+
+If any one of the successors is a goal, the algorithm halts 
+
+Else, it selects the k best successors from the complete list and repeats the same process
+
+we used local beam search algorithm in this Assignment to find the best cost of the given sentence.
+
+we maintained best k states after one change in the sentence.
+
+we also maintained two varibales k and an array best_states in the assignment.
+
+k here refers to the number of best states maintained by changing each character in the sentence
+
+increasing the value of k gives more precised output with less errors and also the time taken to run the code also increases.
+
+To, get in optimal time and  good optimal solution we took the value of k as 10
+
+maintaining 10 best states and changing the all characters upto infinite times till time out to get best optimisation
+
+First we change every character to its all possible charaters and maintian the best k strings which gives less cost.
+
+these k strings are again changed to all possible characters infinite iterations and we keep on maintain best k strings at every iteration.
+
+We maintained a max heap (max priority queue which will be implemented as a max heap in python) at every cost function of new sentence calculated. if the heap size is less than k then we add it to heap or if the heap size exceeds k we check the corresponding cost function with the maximum value in heap which can be obtained in unit time.
+
+If the new value is larger than the max value in heap we dont add it, or if the new value is less than the max value in heap we add it to heap and pop an element in the heap.
+
+which gives the new best k values in heap this step takes O(log(k)) time . as k is a constant and for k=10 case it is log(10) which is comparable low so if the number of characters are n for one iteration to maintain k best values among them takes O(nlog(k)).
+
+For, More precision requirement please increase the values of k but it costs time to complete.
